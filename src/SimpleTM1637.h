@@ -58,7 +58,7 @@ public:
 
   void setBrightness(uint8_t displayBrightness);
 
-  void display(const uint8_t segments[]);
+  void displayRAW(const uint8_t segments[]);
  
 protected:
 

@@ -23,7 +23,7 @@ void SimpleTM1637::setBrightness(uint8_t displayBrightness)
 	brightness = displayBrightness | 0x08;
 }
 
-void SimpleTM1637::display(const uint8_t segments[])
+void SimpleTM1637::displayRAW(const uint8_t segments[])
 {
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
