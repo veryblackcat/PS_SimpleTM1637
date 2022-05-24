@@ -5,7 +5,7 @@ SimpleTM1637	KEYWORD1
 # Methods and Functions (KEYWORD2)
 
 setBrightness	KEYWORD2
-display			KEYWORD2
+displayRAW			KEYWORD2
 
 # Instances (KEYWORD2)
 
