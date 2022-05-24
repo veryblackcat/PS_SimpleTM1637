@@ -1,7 +1,7 @@
 
 
-#ifndef SIMPLE_TM1637_H
-#define SIMPLE_TM1637_H
+#ifndef SIMPLE_TM1637PS_H
+#define SIMPLE_TM1637PS_H
 
 #include <inttypes.h>
 #include <Arduino.h>
@@ -80,4 +80,4 @@ private:
 	
 };
 
-#endif // SIMPLE_TM1637_H
+#endif // SIMPLE_TM1637PS_H
