@@ -8,7 +8,7 @@ SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio)
 	SimpleTM1637::clk = clk;
 	SimpleTM1637::dio = dio;
 	
-	delay = TM1637_DELAY;
+	delayBUS = TM1637_DELAY_BUS;
 	brightness = 2;
 
     pinMode(clk, INPUT);
@@ -48,24 +48,24 @@ void SimpleTM1637::displayRAW(const uint8_t segments[])
 void SimpleTM1637::start()
 {
   TM1637_DIO_LOW;
-  delayMicroseconds(delay);
+  delayMicroseconds(delayBUS);
 }
 
 void SimpleTM1637::stop()
 {
 	TM1637_DIO_LOW;
-	delayMicroseconds(delay);
+	delayMicroseconds(delayBUS);
 	TM1637_CLK_HIGH;
-	delayMicroseconds(delay);
+	delayMicroseconds(delayBUS);
 	TM1637_DIO_HIGH;
-	delayMicroseconds(delay);
+	delayMicroseconds(delayBUS);
 }
 
 uint8_t SimpleTM1637::sendByte(uint8_t data)
 {
   for(uint8_t i = 0; i < 8; i++) {
 	TM1637_CLK_LOW;
-	delayMicroseconds(delay);
+	delayMicroseconds(delayBUS);
 
     if (data & 0x01)
       TM1637_DIO_HIGH;
@@ -73,19 +73,19 @@ uint8_t SimpleTM1637::sendByte(uint8_t data)
       TM1637_DIO_LOW;
 
 	TM1637_CLK_HIGH;
-	delayMicroseconds(delay);
+	delayMicroseconds(delayBUS);
 	data >>= 1;
   }
 
   // ACK
   TM1637_DIO_HIGH;
   TM1637_CLK_LOW;
-  delayMicroseconds(delay);
+  delayMicroseconds(delayBUS);
   TM1637_CLK_HIGH;
-  delayMicroseconds(delay);
+  delayMicroseconds(delayBUS);
   uint8_t ack = digitalRead(dio);
   TM1637_CLK_LOW;
-  delayMicroseconds(delay);
+  delayMicroseconds(delayBUS);
 
   return ack;
 }

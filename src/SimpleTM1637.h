@@ -44,7 +44,7 @@ const uint8_t digit2segments[] = {
 #define TM1637_DIO_LOW  pinMode(dio, OUTPUT)
 #define TM1637_DIO_HIGH pinMode(dio, INPUT)
 
-#define TM1637_DELAY 100
+#define TM1637_DELAY_BUS 100
 
 #define TM1637_DATA_COMMAND    0x40
 #define TM1637_ADDR_COMMAND    0xC0
@@ -64,7 +64,7 @@ protected:
 
     uint8_t clk;
 	uint8_t dio;
-	uint8_t delay;
+	uint8_t delayBUS;
 	
 	uint8_t brightness;
 
