@@ -41,10 +41,11 @@ const uint8_t digit2segments[] = {
   SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D,          // 9
   };
 
-#define TM1637_CLK_LOW  pinMode(clk, OUTPUT)
-#define TM1637_CLK_HIGH pinMode(clk, INPUT)
-#define TM1637_DIO_LOW  pinMode(dio, OUTPUT)
-#define TM1637_DIO_HIGH pinMode(dio, INPUT)
+#define TM1637_CLK_LOW   pinMode(clk, OUTPUT)
+#define TM1637_CLK_HIGH  pinMode(clk, INPUT)
+#define TM1637_DIO_LOW   pinMode(dio, OUTPUT)
+#define TM1637_DIO_HIGH  pinMode(dio, INPUT)
+#define TM1637_DELAY_BUS delayMicroseconds(delayBUS)
 
 #define TM1637_DELAY_BUS 100
 #define TM1637_ACK_TIMEOUT 200
