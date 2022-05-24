@@ -45,6 +45,7 @@ const uint8_t digit2segments[] = {
 #define TM1637_DIO_HIGH pinMode(dio, INPUT)
 
 #define TM1637_DELAY_BUS 100
+#define TM1637_ACK_TIMEOUT 200
 
 #define TM1637_DATA_COMMAND    0x40
 #define TM1637_ADDR_COMMAND    0xC0

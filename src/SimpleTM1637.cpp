@@ -3,8 +3,7 @@
 #include <Arduino.h>
 #include <SimpleTM1637.h>
 
-SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio)
-{
+SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio) {
 	SimpleTM1637::clk = clk;
 	SimpleTM1637::dio = dio;
 	
@@ -17,14 +16,12 @@ SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio)
 	digitalWrite(dio, LOW);
 }
 
-void SimpleTM1637::setBrightness(uint8_t displayBrightness)
-{
+void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
 	if(displayBrightness > 7) displayBrightness = 7;
 	brightness = displayBrightness | 0x08;
 }
 
-void SimpleTM1637::displayRAW(const uint8_t segments[])
-{
+void SimpleTM1637::displayRAW(const uint8_t segments[]) {
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
 	start();
@@ -45,14 +42,12 @@ void SimpleTM1637::displayRAW(const uint8_t segments[])
 	stop();
 }
 
-void SimpleTM1637::start()
-{
+void SimpleTM1637::start() {
   TM1637_DIO_LOW;
   delayMicroseconds(delayBUS);
 }
 
-void SimpleTM1637::stop()
-{
+void SimpleTM1637::stop() {
 	TM1637_DIO_LOW;
 	delayMicroseconds(delayBUS);
 	TM1637_CLK_HIGH;
@@ -61,8 +56,7 @@ void SimpleTM1637::stop()
 	delayMicroseconds(delayBUS);
 }
 
-uint8_t SimpleTM1637::sendByte(uint8_t data)
-{
+uint8_t SimpleTM1637::sendByte(uint8_t data) {
   for(uint8_t i = 0; i < 8; i++) {
 	TM1637_CLK_LOW;
 	delayMicroseconds(delayBUS);
@@ -77,17 +71,22 @@ uint8_t SimpleTM1637::sendByte(uint8_t data)
 	data >>= 1;
   }
 
-  // ACK
+  // checking ACK
   TM1637_DIO_HIGH;
   TM1637_CLK_LOW;
   delayMicroseconds(delayBUS);
   TM1637_CLK_HIGH;
+  // waiting for ACK
+  uint32_t _timeout = micros() + TM1637_ACK_TIMEOUT;
+  while (digitalRead(dio)){
+	  if(_timeout >= micros()) return 1;
+  }
   delayMicroseconds(delayBUS);
-  uint8_t ack = digitalRead(dio);
+  
   TM1637_CLK_LOW;
   delayMicroseconds(delayBUS);
 
-  return ack;
+  return 0;
 }
 
 
