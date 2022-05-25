@@ -18,6 +18,8 @@
 #define SEG_CP  0b10000000 // colon
 
 /*
+   pos = 0      pos = 1           pos = 2      pos = 3
+
       A            A                 A            A 
      ---          ---               ---          ---
   F |   | B    F |   | B    *    F |   | B    F |   | B
