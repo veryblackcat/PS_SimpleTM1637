@@ -45,8 +45,6 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 		}
 		number /= 10;
     }
-	if(displayPoints & SEG_CP) displayBuffer[1] |= SEG_CP;
-	else displayBuffer[1] &= ~SEG_CP;
 }
 
 void SimpleTM1637::colon(bool colonON){
@@ -55,6 +53,8 @@ void SimpleTM1637::colon(bool colonON){
 }
 
 void SimpleTM1637::display(){
+	if(displayPoints & SEG_CP) displayBuffer[1] |= SEG_CP;
+	else displayBuffer[1] &= ~SEG_CP;
 	displayRAW(displayBuffer);
 }
 
