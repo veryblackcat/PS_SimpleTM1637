@@ -75,6 +75,7 @@ protected:
 	
 	uint8_t brightness;
 	uint8_t displayBuffer[4];
+	uint8_t displayPoints;
 
 	void start();
 	void stop();
