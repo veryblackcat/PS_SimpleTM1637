@@ -14,6 +14,8 @@ SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio) {
     pinMode(dio,INPUT);
 	digitalWrite(clk, LOW);
 	digitalWrite(dio, LOW);
+	
+	displayPoints = 0;
 }
 
 void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
@@ -46,7 +48,8 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 }
 
 void SimpleTM1637::colon(bool colonON){
-	
+	if(colonON) displayPoints |= SEG_CP;
+	else displayPoints &= ~SEG_CP;
 }
 
 void SimpleTM1637::display(){
