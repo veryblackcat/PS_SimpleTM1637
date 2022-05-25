@@ -18,6 +18,8 @@
 #define SEG_CP  0b10000000 // colon
 
 /*
+   pos = 0      pos = 1           pos = 2      pos = 3
+
       A            A                 A            A 
      ---          ---               ---          ---
   F |   | B    F |   | B    *    F |   | B    F |   | B
@@ -41,18 +43,18 @@ const uint8_t digit2segments[] = {
   SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D,          // 9
   };
 
-#define TM1637_CLK_LOW   pinMode(clk, OUTPUT)
-#define TM1637_CLK_HIGH  pinMode(clk, INPUT)
-#define TM1637_DIO_LOW   pinMode(dio, OUTPUT)
-#define TM1637_DIO_HIGH  pinMode(dio, INPUT)
-//#define TM1637_DELAY_BUS delayMicroseconds(delayBUS)
+#define TM1637_CLK_LOW     pinMode(clk, OUTPUT)
+#define TM1637_CLK_HIGH    pinMode(clk, INPUT)
+#define TM1637_DIO_LOW     pinMode(dio, OUTPUT)
+#define TM1637_DIO_HIGH    pinMode(dio, INPUT)
+#define TM1637_CLK_WAITING delayMicroseconds(delayBUS)
 
-#define TM1637_DELAY_BUS 100
+#define TM1637_DELAY_BUS   100
 #define TM1637_ACK_TIMEOUT 200
 
-#define TM1637_DATA_COMMAND    0x40
-#define TM1637_ADDR_COMMAND    0xC0
-#define TM1637_CTRL_COMMAND    0x80
+#define TM1637_DATA_COMMAND 0x40
+#define TM1637_ADDR_COMMAND 0xC0
+#define TM1637_CTRL_COMMAND 0x80
 
 class SimpleTM1637 {
 
@@ -62,7 +64,11 @@ public:
 
   void setBrightness(uint8_t displayBrightness);
 
-  void displayRAW(const uint8_t segments[]);
+  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
+  void colon(bool colonON=false);
+  void clear(uint8_t pos=0, uint8_t length=4);
+  void display();
+  void displayRAW(const uint8_t segments[], uint8_t pos=0, uint8_t length=4);
  
 protected:
 
@@ -71,6 +77,8 @@ protected:
 	uint8_t delayBUS;
 	
 	uint8_t brightness;
+	uint8_t displayBuffer[4];
+	uint8_t displayPoints;
 
 	void start();
 	void stop();
