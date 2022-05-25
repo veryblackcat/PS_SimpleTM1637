@@ -56,6 +56,11 @@ void SimpleTM1637::display(){
 	displayRAW(displayBuffer);
 }
 
+void SimpleTM1637::clear(){
+	uint8_t clear[4] = {0, 0, 0, 0};
+	displayRAW(clear);
+}
+
 void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
 	if(pos > 3) pos = 3;
 	//if(length > 4) length = 4;
