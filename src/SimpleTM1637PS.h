@@ -71,6 +71,7 @@ protected:
 	uint8_t delayBUS;
 	
 	uint8_t brightness;
+	uint8_t displayBuffer[4];
 
 	void start();
 	void stop();
