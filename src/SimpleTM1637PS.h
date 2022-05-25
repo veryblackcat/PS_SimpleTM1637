@@ -62,7 +62,8 @@ public:
 
   void setBrightness(uint8_t displayBrightness);
 
-  void displayDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false); // colon ?
+  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false); // colon ?
+  void display();
   void displayRAW(const uint8_t segments[], uint8_t pos=0, uint8_t length=4);
  
 protected:
