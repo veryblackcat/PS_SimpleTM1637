@@ -25,9 +25,10 @@ void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool 
 	if(number < 0){
 		number = -number;
 		displayBuffer[pos] = SEG_G; // minus sign
-		pos++;
+		pos++; 
+		length--;
 	}
-	uint8_t _endPos = length - pos - 1;
+	uint8_t _endPos = length + pos - 1;
 	for(uint8_t i = _endPos; i >= pos ; i--){
 		if(leadingZeros) displayBuffer[i] = digit2segments[number % 10];
 		else {
