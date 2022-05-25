@@ -60,13 +60,14 @@ void SimpleTM1637::display(){
 
 void SimpleTM1637::clear(uint8_t pos, uint8_t length){
 	uint8_t clear[4] = {0, 0, 0, 0};
-	displayRAW(clear, pos, length);
+	//displayRAW(clear, pos, length);
+	displayRAW(clear);
 	//for (uint8_t i = pos; pos < length; pos++) displayBuffer[i] = 0;
 }
 
 void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
 	if(pos > 3) pos = 3;
-	//if(length > 4) length = 4;
+	  //if(length > 4) length = 4;
 	if(length > 4 - pos) length = 4 - pos;
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
