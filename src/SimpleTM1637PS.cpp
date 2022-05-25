@@ -32,7 +32,7 @@ void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool 
 		if(leadingZeros) displayBuffer[i] = digit2segments[number % 10];
 		else {
 			if(number == 0){ 
-				if(i == _endPos) displayBuffer[i] = digit2segments[0];
+				if(i == _endPos) displayBuffer[i] = digit2segments[0]; // break?
 				else displayBuffer[i] = 0;
 			}
 			else {
