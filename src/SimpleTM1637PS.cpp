@@ -21,10 +21,23 @@ void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
 	brightness = displayBrightness | 0x08;
 }
 
+void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
+	if(number < 0){
+		number = -number;
+		displayBuffer[pos] = SEG_G; // minus sign
+		pos++;
+	}
+	for(uint8_t i = length - pos - 1; i >= pos ; i--){
+		displayBuffer[i] = digit2segments[number % 10];
+		number /= 10;
+    }
+	displayRAW(displayBuffer);
+}
+
 void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
 	if(pos > 3) pos = 3;
-	if(length > 4) length = 4;
-	length -= pos;
+	//if(length > 4) length = 4;
+	if(length > 4 - pos) length = 4 - pos;
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
 	start();
