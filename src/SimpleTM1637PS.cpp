@@ -27,10 +27,25 @@ void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool 
 		displayBuffer[pos] = SEG_G; // minus sign
 		pos++;
 	}
-	for(uint8_t i = length - pos - 1; i >= pos ; i--){
-		displayBuffer[i] = digit2segments[number % 10];
+	uint8_t _endPos = length - pos - 1;
+	for(uint8_t i = _endPos; i >= pos ; i--){
+		if(leadingZeros) displayBuffer[i] = digit2segments[number % 10];
+		else {
+			if(number == 0){ 
+				if(i == _endPos) displayBuffer[i] = digit2segments[0];
+				else displayBuffer[i] = 0;
+			}
+			else {
+				displayBuffer[i] = digit2segments[number % 10];
+			}
+		}
 		number /= 10;
     }
+	/*
+		for(uint8_t i = length - pos - 1; i >= pos ; i--){
+		displayBuffer[i] = digit2segments[number % 10];
+		number /= 10;
+    }*/
 	displayRAW(displayBuffer);
 }
 
