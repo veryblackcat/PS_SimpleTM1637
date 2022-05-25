@@ -59,10 +59,7 @@ void SimpleTM1637::display(){
 }
 
 void SimpleTM1637::clear(uint8_t pos, uint8_t length){
-	uint8_t clear[4] = {0, 0, 0, 0};
-	//displayRAW(clear, pos, length);
-	displayRAW(clear);
-	//for (uint8_t i = pos; pos < length; pos++) displayBuffer[i] = 0;
+	for (uint8_t i = pos; i < length; i++) displayBuffer[i] = 0;
 }
 
 void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
