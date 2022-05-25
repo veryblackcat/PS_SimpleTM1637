@@ -21,7 +21,7 @@ void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
 	brightness = displayBrightness | 0x08;
 }
 
-void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
+void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
 	if(number < 0){
 		number = -number;
 		displayBuffer[pos] = SEG_G; // minus sign
@@ -43,6 +43,10 @@ void SimpleTM1637::displayDEC(int16_t number, uint8_t pos, uint8_t length, bool 
 		}
 		number /= 10;
     }
+	//displayRAW(displayBuffer);
+}
+
+void SimpleTM1637::display(){
 	displayRAW(displayBuffer);
 }
 
