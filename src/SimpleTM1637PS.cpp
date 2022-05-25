@@ -43,7 +43,10 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 		}
 		number /= 10;
     }
-	//displayRAW(displayBuffer);
+}
+
+void SimpleTM1637::colon(bool colonON){
+	
 }
 
 void SimpleTM1637::display(){
