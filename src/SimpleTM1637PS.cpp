@@ -87,48 +87,48 @@ void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t len
 }
 
 void SimpleTM1637::start() {
-  dioLOW(); //TM1637_DIO_LOW;
-  clkWaiting(); //TM1637_CLK_WAITING;
+  dioLOW();
+  clkWaiting();
 }
 
 void SimpleTM1637::stop() {
-	dioLOW(); //TM1637_DIO_LOW;
-	clkWaiting(); //TM1637_CLK_WAITING;
-	clkHIGH(); //TM1637_CLK_HIGH;
-	clkWaiting(); //TM1637_CLK_WAITING;
-	dioHIGH(); //TM1637_DIO_HIGH;
-	clkWaiting(); //TM1637_CLK_WAITING;
+	dioLOW();
+	clkWaiting();
+	clkHIGH();
+	clkWaiting();
+	dioHIGH();
+	clkWaiting();
 }
 
 uint8_t SimpleTM1637::sendByte(uint8_t data) {
   for(uint8_t i = 0; i < 8; i++) {
-	clkLOW(); //TM1637_CLK_LOW;
-	clkWaiting(); //TM1637_CLK_WAITING;
+	clkLOW();
+	clkWaiting();
 
     if (data & 0x01)
-      dioHIGH(); //TM1637_DIO_HIGH;
+      dioHIGH();
     else
-      dioLOW(); //TM1637_DIO_LOW;
+      dioLOW();
 
-	clkHIGH(); //TM1637_CLK_HIGH;
-	clkWaiting(); //TM1637_CLK_WAITING;
+	clkHIGH();
+	clkWaiting();
 	data >>= 1;
   }
 
   // checking ACK
-  dioHIGH(); //TM1637_DIO_HIGH;
-  clkLOW(); //TM1637_CLK_LOW;
-  clkWaiting(); //TM1637_CLK_WAITING;
-  clkHIGH(); //TM1637_CLK_HIGH;
+  dioHIGH();
+  clkLOW();
+  clkWaiting();
+  clkHIGH();
   // waiting for ACK
   uint32_t _timeout = micros() + TM1637_ACK_TIMEOUT;
   while (digitalRead(dio)){
 	  if(_timeout >= micros()) return 1;
   }
-  clkWaiting(); //TM1637_CLK_WAITING;
+  clkWaiting();
   
-  clkLOW(); //TM1637_CLK_LOW;
-  clkWaiting(); //TM1637_CLK_WAITING;
+  clkLOW();
+  clkWaiting();
 
   return 0;
 }
