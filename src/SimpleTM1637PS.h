@@ -59,11 +59,16 @@ public:
   void setBrightness(uint8_t displayBrightness);
 
   void number2buffer(const uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
-  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
+  //void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
   void colon(bool colonON=false);
   void clear(uint8_t pos=0, uint8_t length=4);
   void display();
   void displayRAW(const uint8_t segments[], uint8_t pos=0, uint8_t length=4);
+  
+  // inline
+  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
+	  number2buffer(displayBuffer, number, pos, length, leadingZeros),
+  }
  
 protected:
 
