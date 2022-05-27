@@ -67,7 +67,7 @@ public:
   
   // inline
   void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
-	  number2buffer(displayBuffer, number, pos, length, leadingZeros),
+	  number2buffer(displayBuffer, number, pos, length, leadingZeros);
   }
  
 protected:
