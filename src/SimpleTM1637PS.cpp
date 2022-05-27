@@ -44,6 +44,7 @@ void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, 
 			}
 		}
 		number /= base;
+	}
 }
 
 /*
