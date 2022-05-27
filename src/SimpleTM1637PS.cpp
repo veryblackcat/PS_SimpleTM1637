@@ -23,8 +23,27 @@ void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
 	brightness = displayBrightness | 0x08;
 }
 
-void SimpleTM1637::number2buffer(const uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10){
-	
+void SimpleTM1637::number2buffer(const uint8_t buffer[], int16_t number, uint8_t pos, uint8_t length, bool leadingZeros, uint8_t base){
+	if(number < 0){
+		number = -number;
+		buffer[pos] = SEG_G; // minus sign
+		pos++; 
+		length--;
+	}
+	uint8_t _endPos = length + pos - 1;
+	for(int8_t i = _endPos; i >= pos ; i--){
+		if(leadingZeros){ 
+			buffer[i] = digit2segments[number % base];
+		} else {
+			if(number == 0){ 
+				if(i == _endPos) buffer[i] = digit2segments[0];
+				else buffer[i] = 0;
+			}
+			else {
+				buffer[i] = digit2segments[number % base];
+			}
+		}
+		number /= base;
 }
 
 void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
