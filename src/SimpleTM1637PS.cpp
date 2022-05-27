@@ -46,6 +46,7 @@ void SimpleTM1637::number2buffer(const uint8_t buffer[], int16_t number, uint8_t
 		number /= base;
 }
 
+/*
 void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
 	if(number < 0){
 		number = -number;
@@ -69,6 +70,7 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 		number /= 10;
     }
 }
+*/
 
 void SimpleTM1637::colon(bool colonON){
 	if(colonON) displayPoints |= SEG_CP;
