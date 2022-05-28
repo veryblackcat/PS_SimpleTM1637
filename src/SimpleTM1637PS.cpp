@@ -73,8 +73,8 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 }
 */
 
-uint8_t char2segments(char CharIn){
-	switch(charAt(i)){
+uint8_t char2segments(char charIn){
+	switch(charIn){
 		'0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
 		'1' : return(SEG_B | SEG_C);
 		'2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
@@ -109,6 +109,7 @@ uint8_t char2segments(char CharIn){
 		'U' : return();
 		'Y' : return();
 		' ' : return(0);
+		''  : return(0);
 		'-' : return(SEG_G);
 		}
 }
