@@ -75,46 +75,45 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 
 uint8_t char2segments(char charIn){
 	switch(charIn){
-		'0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
-		'1' : return(SEG_B | SEG_C);
-		'2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
-		'3' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_G);
-		'4' : return(SEG_F | SEG_G | SEG_B | SEG_C);
-		'5' : return(SEG_A | SEG_F | SEG_G | SEG_C | SEG_D);
-		'6' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
-		'7' : return(SEG_A | SEG_B | SEG_C);
-		'8' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G);
-		'9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
-		'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
-		'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
-		'c' : return();
-		'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
-		'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
-		'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
-		'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
-		'G' : return();
-		'h' : return();
-		'H' : return();
-		'I' : return();
-		'J' : return();
-		'L' : return();
-		'n' : return();
-		'o' : return();
-		'O' : return();
-		'P' : return();
-		'r' : return();
-		'S' : return();
-		't' : return();
-		'u' : return();
-		'U' : return();
-		'Y' : return();
-		' ' : return(0);
-		''  : return(0);
-		'-' : return(SEG_G);
+		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case '1' : return(SEG_B | SEG_C);
+		case '2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
+		case '3' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_G);
+		case '4' : return(SEG_F | SEG_G | SEG_B | SEG_C);
+		case '5' : return(SEG_A | SEG_F | SEG_G | SEG_C | SEG_D);
+		case '6' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
+		case '7' : return(SEG_A | SEG_B | SEG_C);
+		case '8' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G);
+		case '9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
+		case 'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
+		case 'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
+		case 'c' : return(0);
+		case 'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
+		case 'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
+		case 'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
+		case 'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
+		case 'G' : return(0);
+		case 'h' : return(0);
+		case 'H' : return(0);
+		case 'I' : return(0);
+		case 'J' : return(0);
+		case 'L' : return(0);
+		case 'n' : return(0);
+		case 'o' : return(0);
+		case 'O' : return(0);
+		case 'P' : return(0);
+		case 'r' : return(0);
+		case 'S' : return(0);
+		case 't' : return(0);
+		case 'u' : return(0);
+		case 'U' : return(0);
+		case 'Y' : return(0);
+		case ' ' : return(0);
+		case '-' : return(SEG_G);
 		}
 }
 
-void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10){
+void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4){
 	for(uint8_t i=0; i<length; i++){
 
 	}
