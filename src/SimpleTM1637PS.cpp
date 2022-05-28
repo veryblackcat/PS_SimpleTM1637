@@ -73,44 +73,48 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 }
 */
 
+uint8_t char2segments(char CharIn){
+	switch(charAt(i)){
+		'0' : return();
+		'1' : return();
+		'2' : return();
+		'3' : return();
+		'4' : return();
+		'5' : return();
+		'6' : return();
+		'7' : return();
+		'8' : return();
+		'9' : return();
+		'A' : return();
+		'b' : return();
+		'c' : return();
+		'C' : return();
+		'd' : return();
+		'E' : return();
+		'F' : return();
+		'G' : return();
+		'h' : return();
+		'H' : return();
+		'I' : return();
+		'J' : return();
+		'L' : return();
+		'n' : return();
+		'o' : return();
+		'O' : return();
+		'P' : return();
+		'S' : return();
+		't' : return();
+		'u' : return();
+		'U' : return();
+		'Y' : return();
+		' ' : return(0);
+		'-' : return(SEG_G);
+		}
+}
+
 void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10){
 	for(uint8_t i=0; i<length; i++){
-		switch(charAt(i)){
-			'0' : break;
-			'1' : break;
-			'2' : break;
-			'3' : break;
-			'4' : break;
-			'5' : break;
-			'6' : break;
-			'7' : break;
-			'8' : break;
-			'9' : break;
-			'A' : break;
-			'b' : break;
-			'c' : break;
-			'C' : break;
-			'd' : break;
-			'E' : break;
-			'F' : break;
-			'G' : break;
-			'h' : break;
-			'H' : break;
-			'I' : break;
-			'J' : break;
-			'L' : break;
-			'n' : break;
-			'o' : break;
-			'O' : break;
-			'P' : break;
-			'S' : break;
-			't' : break;
-			'u' : break;
-			'U' : break;
-			'Y' : break;
-			' ' : break;
-			'-' : break;
-		}
+
 	}
 }
 
