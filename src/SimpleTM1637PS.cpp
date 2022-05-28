@@ -47,32 +47,6 @@ void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, 
 	}
 }
 
-/*
-void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
-	if(number < 0){
-		number = -number;
-		displayBuffer[pos] = SEG_G; // minus sign
-		pos++; 
-		length--;
-	}
-	uint8_t _endPos = length + pos - 1;
-	for(int8_t i = _endPos; i >= pos ; i--){
-		if(leadingZeros){ 
-			displayBuffer[i] = digit2segments[number % 10];
-		} else {
-			if(number == 0){ 
-				if(i == _endPos) displayBuffer[i] = digit2segments[0];
-				else displayBuffer[i] = 0;
-			}
-			else {
-				displayBuffer[i] = digit2segments[number % 10];
-			}
-		}
-		number /= 10;
-    }
-}
-*/
-
 uint8_t char2segments(char charIn) {
 	switch(charIn){
 		case 'O' :
@@ -137,10 +111,6 @@ void SimpleTM1637::colon(bool colonON) {
 	if(colonON) displayPoints |= SEG_CP;
 	else displayPoints &= ~SEG_CP;
 }
-/*
-void SimpleTM1637::display(){
-	displayRAW(displayBuffer);
-}*/
 
 void SimpleTM1637::clear(uint8_t pos, uint8_t length) {
 	for (uint8_t i = pos; i < length; i++) displayBuffer[i] = 0;
