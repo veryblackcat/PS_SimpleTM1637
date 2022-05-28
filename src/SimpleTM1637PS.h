@@ -66,6 +66,7 @@ public:
 
   void number2buffer(uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
   //void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
+  void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
   void colon(bool colonON=false);
   void clear(uint8_t pos=0, uint8_t length=4);
   void display();
