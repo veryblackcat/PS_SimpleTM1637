@@ -75,23 +75,23 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 
 uint8_t char2segments(char CharIn){
 	switch(charAt(i)){
-		'0' : return();
-		'1' : return();
-		'2' : return();
-		'3' : return();
-		'4' : return();
-		'5' : return();
-		'6' : return();
-		'7' : return();
-		'8' : return();
-		'9' : return();
-		'A' : return();
-		'b' : return();
+		'0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		'1' : return(SEG_B | SEG_C);
+		'2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
+		'3' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_G);
+		'4' : return(SEG_F | SEG_G | SEG_B | SEG_C);
+		'5' : return(SEG_A | SEG_F | SEG_G | SEG_C | SEG_D);
+		'6' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
+		'7' : return(SEG_A | SEG_B | SEG_C);
+		'8' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G);
+		'9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
+		'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
+		'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
 		'c' : return();
-		'C' : return();
-		'd' : return();
-		'E' : return();
-		'F' : return();
+		'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
+		'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
+		'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
+		'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
 		'G' : return();
 		'h' : return();
 		'H' : return();
@@ -102,6 +102,7 @@ uint8_t char2segments(char CharIn){
 		'o' : return();
 		'O' : return();
 		'P' : return();
+		'r' : return();
 		'S' : return();
 		't' : return();
 		'u' : return();
