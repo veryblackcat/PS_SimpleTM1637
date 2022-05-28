@@ -47,7 +47,7 @@ void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, 
 	}
 }
 
-uint8_t char2segments(char charIn) {
+uint8_t SimpleTM1637::char2segments(char charIn) {
 	switch(charIn){
 		case 'O' :
 		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
@@ -101,7 +101,8 @@ uint8_t char2segments(char charIn) {
 		}
 }
 
-void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4) {
+void SimpleTM1637::string2buffer(uint8_t buffer[], String txt, uint8_t pos, uint8_t length) {
+
 	for(uint8_t i=0; i<length; i++){
 
 	}
