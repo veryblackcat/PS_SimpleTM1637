@@ -113,7 +113,7 @@ uint8_t char2segments(char charIn){
 		}
 }
 
-void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4){
+void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4){
 	for(uint8_t i=0; i<length; i++){
 
 	}
