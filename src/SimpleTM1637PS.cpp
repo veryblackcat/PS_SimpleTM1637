@@ -102,9 +102,10 @@ uint8_t SimpleTM1637::char2segments(char charIn) {
 }
 
 void SimpleTM1637::string2buffer(uint8_t buffer[], String txt, uint8_t pos, uint8_t length) {
+	if(length > txt.length()) length = txt.length();
 
 	for(uint8_t i=0; i<length; i++){
-
+		buffer[pos+i] = char2segments(txt.charAt(i));
 	}
 }
 
