@@ -65,18 +65,17 @@ public:
   void setBrightness(uint8_t displayBrightness);
 
   void number2buffer(uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
-  //void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
   uint8_t char2segments(char charIn);
   void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4);
   void colon(bool colonON=false);
   void clear(uint8_t pos=0, uint8_t length=4);
-  void display();
-  void displayRAW(const uint8_t segments[], uint8_t pos=0, uint8_t length=4);
+  void displayRAW(uint8_t segments[], uint8_t pos=0, uint8_t length=4);
   
   // inline
   void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
 	  number2buffer(displayBuffer, number, pos, length, leadingZeros);
   }
+  void display() { displayRAW(displayBuffer); }
  
 protected:
 

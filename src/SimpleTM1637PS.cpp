@@ -73,7 +73,7 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 }
 */
 
-uint8_t char2segments(char charIn){
+uint8_t char2segments(char charIn) {
 	switch(charIn){
 		case 'O' :
 		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
@@ -127,31 +127,33 @@ uint8_t char2segments(char charIn){
 		}
 }
 
-void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4){
+void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4) {
 	for(uint8_t i=0; i<length; i++){
 
 	}
 }
 
-void SimpleTM1637::colon(bool colonON){
+void SimpleTM1637::colon(bool colonON) {
 	if(colonON) displayPoints |= SEG_CP;
 	else displayPoints &= ~SEG_CP;
 }
-
+/*
 void SimpleTM1637::display(){
-	if(displayPoints & SEG_CP) displayBuffer[1] |= SEG_CP;
-	else displayBuffer[1] &= ~SEG_CP;
 	displayRAW(displayBuffer);
-}
+}*/
 
-void SimpleTM1637::clear(uint8_t pos, uint8_t length){
+void SimpleTM1637::clear(uint8_t pos, uint8_t length) {
 	for (uint8_t i = pos; i < length; i++) displayBuffer[i] = 0;
 }
 
-void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
+void SimpleTM1637::displayRAW(uint8_t segments[], uint8_t pos, uint8_t length) {
 	if(pos > 3) pos = 3;
-	  //if(length > 4) length = 4;
 	if(length > 4 - pos) length = 4 - pos;
+
+	// colon
+	if(displayPoints & SEG_CP) segments[1] |= SEG_CP;
+	else segments[1] &= ~SEG_CP;
+
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
 	start();
