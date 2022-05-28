@@ -74,7 +74,44 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 */
 
 void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10){
-	
+	for(uint8_t i=0; i<length; i++){
+		switch(charAt(i)){
+			'0' : break;
+			'1' : break;
+			'2' : break;
+			'3' : break;
+			'4' : break;
+			'5' : break;
+			'6' : break;
+			'7' : break;
+			'8' : break;
+			'9' : break;
+			'A' : break;
+			'b' : break;
+			'c' : break;
+			'C' : break;
+			'd' : break;
+			'E' : break;
+			'F' : break;
+			'G' : break;
+			'h' : break;
+			'H' : break;
+			'I' : break;
+			'J' : break;
+			'L' : break;
+			'n' : break;
+			'o' : break;
+			'O' : break;
+			'P' : break;
+			'S' : break;
+			't' : break;
+			'u' : break;
+			'U' : break;
+			'Y' : break;
+			' ' : break;
+			'-' : break;
+		}
+	}
 }
 
 void SimpleTM1637::colon(bool colonON){
