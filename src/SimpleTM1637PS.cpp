@@ -23,49 +23,109 @@ void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
 	brightness = displayBrightness | 0x08;
 }
 
-void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool leadingZeros){
+void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, uint8_t length, bool leadingZeros, uint8_t base){
 	if(number < 0){
 		number = -number;
-		displayBuffer[pos] = SEG_G; // minus sign
+		buffer[pos] = SEG_G; // minus sign
 		pos++; 
 		length--;
 	}
 	uint8_t _endPos = length + pos - 1;
 	for(int8_t i = _endPos; i >= pos ; i--){
 		if(leadingZeros){ 
-			displayBuffer[i] = digit2segments[number % 10];
+			buffer[i] = digit2segments[number % base];
 		} else {
 			if(number == 0){ 
-				if(i == _endPos) displayBuffer[i] = digit2segments[0];
-				else displayBuffer[i] = 0;
+				if(i == _endPos) buffer[i] = digit2segments[0];
+				else buffer[i] = 0;
 			}
 			else {
-				displayBuffer[i] = digit2segments[number % 10];
+				buffer[i] = digit2segments[number % base];
 			}
 		}
-		number /= 10;
-    }
+		number /= base;
+	}
 }
 
-void SimpleTM1637::colon(bool colonON){
+uint8_t SimpleTM1637::char2segments(char charIn) {
+	switch(charIn){
+		case 'O' :
+		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'i' :
+		case 'I' :
+		case '1' : return(SEG_B | SEG_C);
+		case '2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
+		case '3' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_G);
+		case '4' : return(SEG_F | SEG_G | SEG_B | SEG_C);
+		case 'S' :
+		case '5' : return(SEG_A | SEG_F | SEG_G | SEG_C | SEG_D);
+		case '6' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
+		case '7' : return(SEG_A | SEG_B | SEG_C);
+		case '8' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G);
+		case '9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
+		case 'a' :
+		case 'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
+		case 'B' :
+		case 'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
+		case 'c' : return(SEG_G | SEG_E | SEG_D);
+		case 'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
+		case 'D' :
+		case 'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
+		case 'e' :
+		case 'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
+		case 'f' :
+		case 'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
+		case 'g' :
+		case 'G' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C);
+		case 'h' : return(SEG_E | SEG_F | SEG_C | SEG_G);
+		case 'H' : return(SEG_E | SEG_F | SEG_B | SEG_C | SEG_G);
+		case 'j' :
+		case 'J' : return(SEG_B | SEG_C | SEG_D);
+		case 'l' :
+		case 'L' : return(SEG_F | SEG_E | SEG_D);
+		case 'N' :
+		case 'n' : return(SEG_E | SEG_C | SEG_G);
+		case 'o' : return(SEG_E | SEG_C | SEG_G | SEG_D);
+		case 'p' :
+		case 'P' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_G);
+		case 'R' :
+		case 'r' : return(SEG_E | SEG_G);
+		case 'T' :
+		case 't' : return(SEG_F | SEG_E | SEG_D | SEG_G);
+		case 'u' : return(SEG_E | SEG_C | SEG_D);
+		case 'U' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'y' :
+		case 'Y' : return(SEG_F | SEG_B | SEG_C | SEG_G);
+		case '-' : return(SEG_G);
+		default  : return(0);
+		}
+}
+
+void SimpleTM1637::string2buffer(uint8_t buffer[], String txt, uint8_t pos, uint8_t length) {
+	if(length > txt.length()) length = txt.length();
+
+	for(uint8_t i=0; i<length; i++){
+		buffer[pos+i] = char2segments(txt.charAt(i));
+	}
+}
+
+void SimpleTM1637::colon(bool colonON) {
 	if(colonON) displayPoints |= SEG_CP;
 	else displayPoints &= ~SEG_CP;
 }
 
-void SimpleTM1637::display(){
-	if(displayPoints & SEG_CP) displayBuffer[1] |= SEG_CP;
-	else displayBuffer[1] &= ~SEG_CP;
-	displayRAW(displayBuffer);
-}
-
-void SimpleTM1637::clear(uint8_t pos, uint8_t length){
+void SimpleTM1637::clear(uint8_t pos, uint8_t length) {
 	for (uint8_t i = pos; i < length; i++) displayBuffer[i] = 0;
 }
 
-void SimpleTM1637::displayRAW(const uint8_t segments[], uint8_t pos, uint8_t length) {
+void SimpleTM1637::displayRAW(uint8_t segments[], uint8_t pos, uint8_t length) {
 	if(pos > 3) pos = 3;
-	  //if(length > 4) length = 4;
 	if(length > 4 - pos) length = 4 - pos;
+
+	// colon
+	if(displayPoints & SEG_CP) segments[1] |= SEG_CP;
+	else segments[1] &= ~SEG_CP;
+
 	// Data command setting
 	// Write data to display register, Automatic address adding, Normal mode
 	start();

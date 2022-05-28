@@ -41,6 +41,12 @@ const uint8_t digit2segments[] = {
   SEG_A | SEG_B | SEG_C,                                  // 7
   SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G,  // 8
   SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D,          // 9
+  SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G,          // A
+  SEG_F | SEG_E | SEG_D | SEG_C | SEG_G,                  // b
+  SEG_A | SEG_F | SEG_E | SEG_D,                          // C
+  SEG_B | SEG_C | SEG_D | SEG_E | SEG_G,                  // d
+  SEG_A | SEG_F | SEG_E | SEG_D | SEG_G,                  // E
+  SEG_A | SEG_F | SEG_E | SEG_G,                          // F
   };
 
 #define TM1637_DELAY_BUS   100
@@ -58,15 +64,22 @@ public:
 
   void setBrightness(uint8_t displayBrightness);
 
-  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false);
+  void number2buffer(uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
+  uint8_t char2segments(char charIn);
+  void string2buffer(uint8_t buffer[], String txt, uint8_t pos=0, uint8_t length=4);
   void colon(bool colonON=false);
   void clear(uint8_t pos=0, uint8_t length=4);
-  void display();
-  void displayRAW(const uint8_t segments[], uint8_t pos=0, uint8_t length=4);
+  void displayRAW(uint8_t segments[], uint8_t pos=0, uint8_t length=4);
+  
+  // inline
+  void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
+	  number2buffer(displayBuffer, number, pos, length, leadingZeros);
+  }
+  void display() { displayRAW(displayBuffer); }
  
 protected:
 
-    uint8_t clk;
+   uint8_t clk;
 	uint8_t dio;
 	uint8_t delayBUS;
 	
