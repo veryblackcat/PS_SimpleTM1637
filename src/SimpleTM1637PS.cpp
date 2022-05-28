@@ -73,6 +73,10 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 }
 */
 
+void string2buffer(uint8_t buffer[], String txt=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10){
+	
+}
+
 void SimpleTM1637::colon(bool colonON){
 	if(colonON) displayPoints |= SEG_CP;
 	else displayPoints &= ~SEG_CP;
