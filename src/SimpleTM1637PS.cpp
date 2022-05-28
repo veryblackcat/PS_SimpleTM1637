@@ -77,6 +77,7 @@ uint8_t char2segments(char charIn){
 	switch(charIn){
 		case 'O' :
 		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'i' :
 		case 'I' :
 		case '1' : return(SEG_B | SEG_C);
 		case '2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
@@ -88,25 +89,38 @@ uint8_t char2segments(char charIn){
 		case '7' : return(SEG_A | SEG_B | SEG_C);
 		case '8' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F | SEG_G);
 		case '9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
+		case 'a' :
 		case 'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
+		case 'B' :
 		case 'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
 		case 'c' : return(SEG_G | SEG_E | SEG_D);
 		case 'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
+		case 'D' :
 		case 'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
+		case 'e' :
 		case 'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
+		case 'f' :
 		case 'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
+		case 'g' :
 		case 'G' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C);
 		case 'h' : return(SEG_E | SEG_F | SEG_C | SEG_G);
 		case 'H' : return(SEG_E | SEG_F | SEG_B | SEG_C | SEG_G);
+		case 'j' :
 		case 'J' : return(SEG_B | SEG_C | SEG_D);
+		case 'l' :
 		case 'L' : return(SEG_F | SEG_E | SEG_D);
+		case 'N' :
 		case 'n' : return(SEG_E | SEG_C | SEG_G);
 		case 'o' : return(SEG_E | SEG_C | SEG_G | SEG_D);
+		case 'p' :
 		case 'P' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_G);
+		case 'R' :
 		case 'r' : return(SEG_E | SEG_G);
+		case 'T' :
 		case 't' : return(SEG_F | SEG_E | SEG_D | SEG_G);
 		case 'u' : return(SEG_E | SEG_C | SEG_D);
 		case 'U' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'y' :
 		case 'Y' : return(SEG_F | SEG_B | SEG_C | SEG_G);
 		case '-' : return(SEG_G);
 		default  : return(0);
