@@ -75,11 +75,14 @@ void SimpleTM1637::writeDEC(int16_t number, uint8_t pos, uint8_t length, bool le
 
 uint8_t char2segments(char charIn){
 	switch(charIn){
+		case 'O' :
 		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'I' :
 		case '1' : return(SEG_B | SEG_C);
 		case '2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
 		case '3' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_G);
 		case '4' : return(SEG_F | SEG_G | SEG_B | SEG_C);
+		case 'S' :
 		case '5' : return(SEG_A | SEG_F | SEG_G | SEG_C | SEG_D);
 		case '6' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
 		case '7' : return(SEG_A | SEG_B | SEG_C);
@@ -87,29 +90,26 @@ uint8_t char2segments(char charIn){
 		case '9' : return(SEG_G | SEG_F | SEG_A | SEG_B | SEG_C | SEG_D);
 		case 'A' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_C | SEG_G);
 		case 'b' : return(SEG_F | SEG_E | SEG_D | SEG_C | SEG_G);
-		case 'c' : return(0);
+		case 'c' : return(SEG_G | SEG_E | SEG_D);
 		case 'C' : return(SEG_A | SEG_F | SEG_E | SEG_D);
 		case 'd' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_G);
 		case 'E' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_G);
 		case 'F' : return(SEG_A | SEG_F | SEG_E | SEG_G);
-		case 'G' : return(0);
-		case 'h' : return(0);
-		case 'H' : return(0);
-		case 'I' : return(0);
-		case 'J' : return(0);
-		case 'L' : return(0);
-		case 'n' : return(0);
-		case 'o' : return(0);
-		case 'O' : return(0);
-		case 'P' : return(0);
-		case 'r' : return(0);
-		case 'S' : return(0);
-		case 't' : return(0);
-		case 'u' : return(0);
-		case 'U' : return(0);
-		case 'Y' : return(0);
-		case ' ' : return(0);
+		case 'G' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C);
+		case 'h' : return(SEG_E | SEG_F | SEG_C | SEG_G);
+		case 'H' : return(SEG_E | SEG_F | SEG_B | SEG_C | SEG_G);
+		case 'J' : return(SEG_B | SEG_C | SEG_D);
+		case 'L' : return(SEG_F | SEG_E | SEG_D);
+		case 'n' : return(SEG_E | SEG_C | SEG_G);
+		case 'o' : return(SEG_E | SEG_C | SEG_G | SEG_D);
+		case 'P' : return(SEG_E | SEG_F | SEG_A | SEG_B | SEG_G);
+		case 'r' : return(SEG_E | SEG_G);
+		case 't' : return(SEG_F | SEG_E | SEG_D | SEG_G);
+		case 'u' : return(SEG_E | SEG_C | SEG_D);
+		case 'U' : return(SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
+		case 'Y' : return(SEG_F | SEG_B | SEG_C | SEG_G);
 		case '-' : return(SEG_G);
+		default  : return(0);
 		}
 }
 
