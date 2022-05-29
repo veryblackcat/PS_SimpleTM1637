@@ -78,9 +78,9 @@ public:
   void writeSTR(String txt, uint8_t pos=0, uint8_t length=4) {
 	  string2buffer(displayBuffer, txt, pos, length);
   }
+  void writeSEG(uint8_t segments, uint8_t pos=0) { displayBuffer[pos] = segments; }
   void display() { displayRAW(displayBuffer); }
   // writeCHAR
-  // writeSEG
   // writeHEX
  
 protected:
