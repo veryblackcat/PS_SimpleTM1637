@@ -79,6 +79,7 @@ uint8_t SimpleTM1637::char2segments(char charIn) {
 		case 'G' : return(SEG_A | SEG_F | SEG_E | SEG_D | SEG_C);
 		case 'h' : return(SEG_E | SEG_F | SEG_C | SEG_G);
 		case 'H' : return(SEG_E | SEG_F | SEG_B | SEG_C | SEG_G);
+		case 'i' : return(SEG_E | SEG_D);
 		case 'j' :
 		case 'J' : return(SEG_B | SEG_C | SEG_D);
 		case 'l' :
