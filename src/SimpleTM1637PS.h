@@ -75,13 +75,13 @@ public:
   void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
 	  number2buffer(displayBuffer, number, pos, length, leadingZeros);
   }
-  void writeSTR(String txt, uint8_t pos=0, uint8_t length=4) {
-	  string2buffer(displayBuffer, txt, pos, length);
+  void writeHEX(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {
+	  number2buffer(displayBuffer, number, pos, length, leadingZeros, 16);
   }
+  void writeSTR(String txt, uint8_t pos=0, uint8_t length=4) { string2buffer(displayBuffer, txt, pos, length); }
+  void writeCHR(char charIn, uint8_t pos=0) { displayBuffer[pos] = char2segments(charIn); }
   void writeSEG(uint8_t segments, uint8_t pos=0) { displayBuffer[pos] = segments; }
   void display() { displayRAW(displayBuffer); }
-  // writeCHAR
-  // writeHEX
  
 protected:
 
