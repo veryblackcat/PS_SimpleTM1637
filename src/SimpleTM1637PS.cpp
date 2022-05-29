@@ -51,7 +51,6 @@ uint8_t SimpleTM1637::char2segments(char charIn) {
 	switch(charIn){
 		case 'O' :
 		case '0' : return(SEG_A | SEG_B | SEG_C | SEG_D | SEG_E | SEG_F);
-		case 'i' :
 		case 'I' :
 		case '1' : return(SEG_B | SEG_C);
 		case '2' : return(SEG_A | SEG_B | SEG_G | SEG_E | SEG_D);
