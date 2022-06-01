@@ -1,7 +1,7 @@
 
 #include <inttypes.h>
 #include <Arduino.h>
-#include <SimpleTM1637PS.h>
+#include <psSimpleTM1637PS.h>
 
 SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio) {
 	SimpleTM1637::clk = clk;
