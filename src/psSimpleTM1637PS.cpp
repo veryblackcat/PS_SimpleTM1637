@@ -27,6 +27,10 @@ void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, 
 	if(number < 0){
 		number = -number;
 		buffer[pos] = SEG_G; // minus sign
+		/*
+		if(leadingZeros) buffer[pos] = SEG_G; // minus sign
+		else buffer[pos + (number < 100) + (number < 10)] = SEG_G; // minus sign
+		*/
 		pos++; 
 		length--;
 	}
