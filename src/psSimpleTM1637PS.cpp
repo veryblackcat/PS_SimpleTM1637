@@ -20,7 +20,8 @@ SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio) {
 
 void SimpleTM1637::setBrightness(uint8_t displayBrightness, bool on) {
 	if(displayBrightness > 7) displayBrightness = 7;
-	brightness = displayBrightness | 0x08;
+	if(on) brightness = displayBrightness | 0x08;
+	else brightness = displayBrightness;
 }
 
 void SimpleTM1637::number2buffer(uint8_t buffer[], int16_t number, uint8_t pos, uint8_t length, bool leadingZeros, uint8_t base){
