@@ -18,7 +18,7 @@ SimpleTM1637::SimpleTM1637(uint8_t clk, uint8_t dio) {
 	displayPoints = 0;
 }
 
-void SimpleTM1637::setBrightness(uint8_t displayBrightness) {
+void SimpleTM1637::setBrightness(uint8_t displayBrightness, bool on) {
 	if(displayBrightness > 7) displayBrightness = 7;
 	brightness = displayBrightness | 0x08;
 }
