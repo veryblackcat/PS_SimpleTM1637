@@ -62,8 +62,8 @@ public:
 
   SimpleTM1637(uint8_t clk, uint8_t dio);
 
-  void setBrightness(uint8_t displayBrightness);
-  //uint8_t getBrightness() { return (brightness); }
+  void setBrightness(uint8_t displayBrightness, bool on=true);
+  uint8_t getBrightness() { return(brightness); }
 
   void number2buffer(uint8_t buffer[], int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false, uint8_t base=10);
   uint8_t char2segments(char charIn);
