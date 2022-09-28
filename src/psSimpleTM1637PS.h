@@ -71,6 +71,7 @@ public:
   void colon(bool colonON=false);
   void clear(uint8_t pos=0, uint8_t length=4);
   void displayRAW(uint8_t segments[], uint8_t pos=0, uint8_t length=4);
+  void displayBlank();
   
   // inline
   void writeDEC(int16_t number=0, uint8_t pos=0, uint8_t length=4, bool leadingZeros=false) {

@@ -151,6 +151,10 @@ void SimpleTM1637::displayRAW(uint8_t segments[], uint8_t pos, uint8_t length) {
 	stop();
 }
 
+void SimpleTM1637::displayBlank() {
+
+}
+
 void SimpleTM1637::start() {
   dioLOW();
   clkWaiting();
