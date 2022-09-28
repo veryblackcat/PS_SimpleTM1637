@@ -152,7 +152,24 @@ void SimpleTM1637::displayRAW(uint8_t segments[], uint8_t pos, uint8_t length) {
 }
 
 void SimpleTM1637::displayBlank() {
+	// Data command setting
+	// Write data to display register, Automatic address adding, Normal mode
+	start();
+	sendByte(TM1637_DATA_COMMAND);
+	stop();
 
+	// Address command setting GRID1 (COH) - first digit (left)
+	start();
+	sendByte(TM1637_ADDR_COMMAND);
+
+	// Send byte
+	for (uint8_t i=0; i < 4; i++) sendByte(0);
+	stop();
+
+	// Display and control command setting - brightness, on/off
+	start();
+	sendByte(TM1637_CTRL_COMMAND | brightness);
+	stop();
 }
 
 void SimpleTM1637::start() {
