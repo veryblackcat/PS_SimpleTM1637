@@ -201,6 +201,7 @@ uint8_t SimpleTM1637::sendByte(uint8_t data) {
 	data >>= 1;
   }
 
+
   // checking ACK
   dioHIGH();
   clkLOW();
